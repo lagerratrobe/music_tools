@@ -25,16 +25,10 @@ with urllib.request.urlopen(req) as response:
     print(result)
     print()
 
-# Parse: "210 Found exact matches...\ndata bd0f4f84 Harry Connick..."
-# Category is "data", disc ID is "bd0f4f84"
 lines = result.strip().split("\n")
 parts = lines[1].split()
 category = parts[0]
 gnudb_id = parts[1]
-
-print(f"Category: {category}")
-print(f"GnuDB ID: {gnudb_id}")
-print()
 
 # Now read the full record
 read_url = (
@@ -42,9 +36,8 @@ read_url = (
         f"?cmd=cddb+read+{category}+{gnudb_id}"
         f"&hello=user+hostname+cdrip+0.1&proto=6"
     )
-print(read_url)
-#req = urllib.request.Request(read_url)
-#with urllib.request.urlopen(req) as response:
-    #result = response.read().decode("utf-8")
-    #print("Full record:")
-    #print(result)
+req = urllib.request.Request(read_url)
+with urllib.request.urlopen(req) as response:
+    result = response.read().decode("utf-8")
+    print("Full record:")
+    print(result)

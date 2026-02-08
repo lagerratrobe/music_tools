@@ -120,7 +120,7 @@ if __name__ == "__main__":
     print_disc_info(disc)
 
     releases = lookup_musicbrainz(disc)
-    #print_releases(releases)
+    print_releases(releases)
 
     tracks = get_tracks_from_release(releases[0])
     #print_tracks(tracks)
